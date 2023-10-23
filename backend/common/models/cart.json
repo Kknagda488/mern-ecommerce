@@ -1,0 +1,33 @@
+{
+  "name": "Cart",
+  "plural": "cart",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "quantity": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "product": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "user": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "size": {
+      "type": "any"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

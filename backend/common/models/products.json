@@ -1,0 +1,77 @@
+{
+  "name": "products",
+  "plural": "products",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string",
+      "required": true
+    },
+    "price": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "discountPercentage": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "rating": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "stock": {
+      "type": "number",
+      "default": 0
+    },
+    "brand": {
+      "type": "string",
+      "required": true
+    },
+    "category": {
+      "type": "string",
+      "required": true
+    },
+    "thumbnail": {
+      "type": "string"
+    },
+    "images": {
+      "type": "array",
+      "default": []
+    },
+    "colors": {
+      "type": "array",
+      "default": []
+    },
+    "sizes": {
+      "type": "array",
+      "default": []
+    },
+    "highlights": {
+      "type": "array",
+      "default": []
+    },
+    "discountPrice": {
+      "type": "number",
+      "default": 0
+    },
+    "deleted": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

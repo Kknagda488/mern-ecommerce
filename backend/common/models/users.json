@@ -1,0 +1,33 @@
+{
+  "name": "Users",
+  "plural": "Users",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "email": {
+      "type": "string",
+      "required": true,
+      "default": " "
+    },
+    "password": {
+      "type": "string",
+      "required": true,
+      "default": " "
+    },
+    "role": {
+      "type": "string",
+      "default": "uer"
+    },
+    "name": {
+      "type": "string",
+      "default": " "
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
