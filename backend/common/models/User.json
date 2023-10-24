@@ -1,6 +1,6 @@
 {
   "name": "Users",
-  "plural": "Users",
+  "plural": "User",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -19,7 +19,7 @@
     },
     "role": {
       "type": "string",
-      "default": "uer"
+      "default": "user"
     },
     "name": {
       "type": "string",
