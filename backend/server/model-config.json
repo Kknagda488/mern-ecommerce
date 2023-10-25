@@ -40,6 +40,10 @@
     "dataSource": "mongodb",
     "public": true
   },
+  "ping": {
+    "dataSource": "mongodb",
+    "public": true
+  },
   "products": {
     "dataSource": "mongodb",
     "public": true
@@ -61,6 +65,10 @@
     "public": true
   },
   "order": {
+    "dataSource": "mongodb",
+    "public": true
+  },
+  "test": {
     "dataSource": "mongodb",
     "public": true
   }

@@ -1,0 +1,46 @@
+{
+    "name": "ping",
+    "plural": "pings",
+    "base": "Model",
+    "idInjection": true,
+    "options": {
+        "validateUpsert": true
+    },
+    "properties": {
+        "items": {
+            "type": [
+                "any"
+            ],
+            "required": true
+        },
+        "totalAmount": {
+            "type": "number"
+        },
+        "totalItems": {
+            "type": "number"
+        },
+        "user": {
+            "type": "object",
+            "required": true
+        },
+        "paymentMethod": {
+            "type": "string",
+            "required": true
+        },
+        "paymentStatus": {
+            "type": "string",
+            "default": "pending"
+        },
+        "status": {
+            "type": "string",
+            "default": "pending"
+        },
+        "selectedAddress": {
+            "type": "any"
+        }
+    },
+    "validations": [],
+    "relations": {},
+    "acls": [],
+    "methods": {}
+}
