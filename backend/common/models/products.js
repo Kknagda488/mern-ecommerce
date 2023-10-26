@@ -11,11 +11,11 @@ module.exports = function (Products) {
         };
     }
     Products.getAllProducts = async function (cb) {
-        // Your implementation here, which is similar to the Express.js code
+
 
         // Sample implementation, replace with your own logic
         try {
-            const product = await Products.find(); // Use `Brand.find()` without `.exec()`
+            const product = await Products.find();
             cb(null, product);
         } catch (err) {
             cb(err);
