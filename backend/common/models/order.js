@@ -13,7 +13,7 @@ module.exports = function (Order) {
         try {
             for (const item of order.items) {
                 if (!item.product || !item.product.id) {
-                    // Handle the case where item.product or item.product.id is undefined
+
                     return cb(new Error('Invalid item or product ID.'));
                 }
                 const product = await Order.app.models.Product.findById(item.product.id);

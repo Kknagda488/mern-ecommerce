@@ -5,7 +5,7 @@
         "url": "mongodb+srv://kknagda:kknagda@cluster0.vhmyy.mongodb.net/?retryWrites=true&w=majority",
         "database": "test",
         "password": "kknagda",
-        "name": "mongodb",
+        "name": "db",
         "user": "kknagda",
         "useNewUrlParser": true,
         "connector": "mongodb"

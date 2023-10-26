@@ -14,7 +14,7 @@
     ]
   },
   "User": {
-    "dataSource": null
+    "dataSource": "db"
   },
   "AccessToken": {
     "dataSource": null,
@@ -32,7 +32,7 @@
     }
   },
   "Role": {
-    "dataSource": null,
+    "dataSource": "db",
     "public": false
   },
   "Products": {

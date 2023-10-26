@@ -3,7 +3,7 @@
 module.exports = function (Brand) {
     Brand.fetchBrands = async function (cb) {
         try {
-            const brands = await Brand.find(); // Use `Brand.find()` without `.exec()`
+            const brands = await Brand.find();
             cb(null, brands);
         } catch (err) {
             cb(err);

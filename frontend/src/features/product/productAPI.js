@@ -9,7 +9,7 @@ export function fetchProductById(id) {
 
 export function createProduct(product) {
   return new Promise(async (resolve) => {
-    const response = await fetch('http://localhost:3000/api/Products/products', {
+    const response = await fetch('http://localhost:3000/api/Products/product', {
       method: 'POST',
       body: JSON.stringify(product),
       headers: { 'content-type': 'application/json' },
