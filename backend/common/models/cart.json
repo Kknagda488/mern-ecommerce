@@ -1,7 +1,6 @@
 {
   "name": "Cart",
-  "plural": "cart",
-  "base": "PersistedModel",
+  "base": "Model",
   "idInjection": true,
   "options": {
     "validateUpsert": true
@@ -27,7 +26,104 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "product": {
+      "type": "belongsTo",
+      "model": "Product",
+      "foreignKey": "productId"
+    }
+  },
   "acls": [],
-  "methods": {}
+  "methods": {
+    "fetchCartByUser": {
+      "accepts": [
+        {
+          "arg": "id",
+          "type": "string",
+          "http": {
+            "source": "body"
+          }
+        }
+      ],
+      "returns": {
+        "arg": "cartItems",
+        "type": "array",
+        "root": true
+      },
+      "http": {
+        "verb": "get",
+        "path": "/fetchCartByUser"
+      }
+    },
+    "addToCart": {
+      "accepts": [
+        {
+          "arg": "id",
+          "type": "string"
+        },
+        {
+          "arg": "data",
+          "type": "object",
+          "http": {
+            "source": "body"
+          }
+        }
+      ],
+      "returns": {
+        "arg": "cartItem",
+        "type": "object"
+      },
+      "http": {
+        "path": "/addToCart/:id",
+        "verb": "post"
+      }
+    },
+    "deleteFromCart ": {
+      "accepts": [
+        {
+          "arg": "id",
+          "type": "string",
+          "http": {
+            "source": "path"
+          }
+        }
+      ],
+      "returns": {
+        "arg": "cartItem",
+        "type": "object",
+        "root": true
+      },
+      "http": {
+        "verb": "delete",
+        "path": "/deleteFromCart/:id"
+      }
+    },
+    "updateCart ": {
+      "accepts": [
+        {
+          "arg": "id",
+          "type": "string",
+          "http": {
+            "source": "body"
+          }
+        },
+        {
+          "arg": "data",
+          "type": "object",
+          "http": {
+            "source": "body"
+          }
+        }
+      ],
+      "returns": {
+        "arg": "cartItem",
+        "type": "object",
+        "root": true
+      },
+      "http": {
+        "verb": "put",
+        "path": "/updateCart/:id"
+      }
+    }
+  }
 }

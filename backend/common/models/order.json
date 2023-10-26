@@ -1,7 +1,6 @@
 {
   "name": "order",
-  "plural": "orders",
-  "base": "PersistedModel",
+  "base": "Model",
   "idInjection": true,
   "options": {
     "validateUpsert": true
@@ -24,8 +23,7 @@
       "required": true
     },
     "paymentMethod": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "paymentStatus": {
       "type": "string",
@@ -42,5 +40,111 @@
   "validations": [],
   "relations": {},
   "acls": [],
-  "methods": {}
+  "methods": {
+    "createOrder": {
+      "accepts": [
+        {
+          "arg": "order",
+          "type": "object",
+          "http": {
+            "source": "body"
+          },
+          "description": "order object to create"
+        }
+      ],
+      "returns": {
+        "arg": "order",
+        "type": "object",
+        "root": true
+      },
+      "http": {
+        "verb": "post",
+        "path": "/orders"
+      }
+    },
+    "fetchOrdersByUser": {
+      "accepts": {
+        "arg": "userId",
+        "type": "string"
+      },
+      "returns": {
+        "arg": "orders",
+        "type": "array"
+      },
+      "http": {
+        "path": "/orders",
+        "verb": "get"
+      }
+    },
+    "deleteOrder ": {
+      "accepts": [
+        {
+          "arg": "id",
+          "type": "string",
+          "http": {
+            "source": "path"
+          },
+          "description": "ID of the product"
+        }
+      ],
+      "returns": {
+        "arg": "order",
+        "type": "object",
+        "root": true
+      },
+      "http": {
+        "verb": "delete",
+        "path": "/orders/:id"
+      }
+    },
+    "updateOrder": {
+      "accepts": [
+        {
+          "arg": "id",
+          "type": "string",
+          "http": {
+            "source": "body"
+          },
+          "description": "ID of the order to update"
+        },
+        {
+          "arg": "data",
+          "type": "object",
+          "http": {
+            "source": "body"
+          },
+          "description": "Updated order object"
+        }
+      ],
+      "returns": {
+        "arg": "order",
+        "type": "object",
+        "root": true
+      },
+      "http": {
+        "verb": "patch",
+        "path": "/orders/:id"
+      }
+    },
+    "fetchAllOrders ": {
+      "accepts": [
+        {
+          "arg": "filter",
+          "type": "object",
+          "http": {
+            "source": "body"
+          }
+        }
+      ],
+      "returns": {
+        "arg": "orders",
+        "type": "array",
+        "root": true
+      },
+      "http": {
+        "verb": "get",
+        "path": "/orders"
+      }
+    }
+  }
 }

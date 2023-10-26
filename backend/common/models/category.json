@@ -1,7 +1,6 @@
 {
   "name": "Category",
-  "plural": "category",
-  "base": "PersistedModel",
+  "base": "Model",
   "idInjection": true,
   "options": {
     "validateUpsert": true
@@ -25,5 +24,34 @@
   "validations": [],
   "relations": {},
   "acls": [],
-  "methods": {}
+  "methods": {
+    "fetchCategories": {
+      "returns": {
+        "arg": "categories",
+        "type": "array",
+        "root": true
+      },
+      "http": {
+        "verb": "get",
+        "path": "/fetchCategories"
+      }
+    },
+    "createCategory": {
+      "accepts": {
+        "arg": "data",
+        "type": "object",
+        "http": {
+          "source": "body"
+        }
+      },
+      "returns": {
+        "arg": "category",
+        "type": "object"
+      },
+      "http": {
+        "path": "/createCategory",
+        "verb": "post"
+      }
+    }
+  }
 }

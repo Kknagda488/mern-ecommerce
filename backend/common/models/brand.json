@@ -1,7 +1,6 @@
 {
   "name": "Brand",
-  "plural": "brand",
-  "base": "PersistedModel",
+  "base": "Model",
   "idInjection": true,
   "options": {
     "validateUpsert": true
@@ -10,12 +9,12 @@
     "label": {
       "type": "string",
       "required": true,
-      "default": " "
+      "default": ""
     },
     "value": {
       "type": "string",
       "required": true,
-      "default": " "
+      "default": ""
     },
     "checked": {
       "type": "boolean",
@@ -25,5 +24,34 @@
   "validations": [],
   "relations": {},
   "acls": [],
-  "methods": {}
+  "methods": {
+    "fetchBrands": {
+      "returns": {
+        "arg": "brand",
+        "type": "array",
+        "root": true
+      },
+      "http": {
+        "verb": "get",
+        "path": "/fetchBrands"
+      }
+    },
+    "createBrand": {
+      "accepts": {
+        "arg": "data",
+        "type": "object",
+        "http": {
+          "source": "body"
+        }
+      },
+      "returns": {
+        "arg": "brand",
+        "type": "object"
+      },
+      "http": {
+        "path": "/createBrand",
+        "verb": "post"
+      }
+    }
+  }
 }

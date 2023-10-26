@@ -14,62 +14,45 @@
     ]
   },
   "User": {
-    "dataSource": "mongodb",
-    "public": true
+    "dataSource": null
   },
   "AccessToken": {
-    "dataSource": "db",
+    "dataSource": null,
     "public": false
   },
   "ACL": {
-    "dataSource": "db",
+    "dataSource": null,
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "db",
+    "dataSource": null,
     "public": false,
     "options": {
       "strictObjectIDCoercion": true
     }
   },
   "Role": {
-    "dataSource": "db",
+    "dataSource": null,
     "public": false
   },
-  "todo": {
-    "dataSource": "mongodb",
-    "public": true
-  },
-  "ping": {
-    "dataSource": "mongodb",
-    "public": true
-  },
-  "products": {
-    "dataSource": "mongodb",
-    "public": true
-  },
-  "Users": {
-    "dataSource": "mongodb",
-    "public": true
-  },
-  "Category": {
-    "dataSource": "mongodb",
-    "public": true
-  },
-  "Cart": {
-    "dataSource": "mongodb",
+  "Products": {
+    "dataSource": "db",
     "public": true
   },
   "Brand": {
-    "dataSource": "mongodb",
+    "dataSource": "db",
+    "public": true
+  },
+  "Cart": {
+    "dataSource": "db",
     "public": true
   },
   "order": {
-    "dataSource": "mongodb",
+    "dataSource": "db",
     "public": true
   },
-  "test": {
-    "dataSource": "mongodb",
+  "Category": {
+    "dataSource": "db",
     "public": true
   }
 }

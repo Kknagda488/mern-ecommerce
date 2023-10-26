@@ -1,7 +1,7 @@
 
 export function fetchProductById(id) {
   return new Promise(async (resolve) => {
-    const response = await fetch('http://localhost:3000/api/products/' + id);
+    const response = await fetch('http://localhost:3000/api/Products/product/' + id);
     const data = await response.json();
     resolve({ data });
   });
@@ -9,7 +9,7 @@ export function fetchProductById(id) {
 
 export function createProduct(product) {
   return new Promise(async (resolve) => {
-    const response = await fetch('http://localhost:3000/api/products/', {
+    const response = await fetch('http://localhost:3000/api/Products/products', {
       method: 'POST',
       body: JSON.stringify(product),
       headers: { 'content-type': 'application/json' },
@@ -22,7 +22,7 @@ export function createProduct(product) {
 export function updateProduct(update) {
   return new Promise(async (resolve) => {
     const response = await fetch(
-      'http://localhost:3000/api/products/' + update.id,
+      'http://localhost:3000/api/Products/product/' + update.id,
       {
         method: 'PATCH',
         body: JSON.stringify(update),
@@ -52,13 +52,9 @@ export function fetchProductsByFilters(filter, sort, pagination, admin) {
   for (let key in pagination) {
     queryString += `${key}=${pagination[key]}&`;
   }
-  if(admin){
-    queryString += `admin=true`;
-  }
-
   return new Promise(async (resolve) => {
     const response = await fetch(
-      'http://localhost:3000/api/products?' + queryString
+      'http://localhost:3000/api/Products/products?' + queryString
     );
     const data = await response.json();
     const totalItems = await response.headers.get('X-Total-Count');
@@ -68,7 +64,7 @@ export function fetchProductsByFilters(filter, sort, pagination, admin) {
 
 export function fetchCategories() {
   return new Promise(async (resolve) => {
-    const response = await fetch('http://localhost:3000/api/category');
+    const response = await fetch('http://localhost:3000/api/Categories/fetchCategories');
     const data = await response.json();
     resolve({ data });
   });
@@ -76,7 +72,7 @@ export function fetchCategories() {
 
 export function fetchBrands() {
   return new Promise(async (resolve) => {
-    const response = await fetch('http://localhost:3000/api/brand');
+    const response = await fetch('http://localhost:3000/api/Brands/fetchBrands');
     const data = await response.json();
     resolve({ data });
   });

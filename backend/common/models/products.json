@@ -1,7 +1,6 @@
 {
-  "name": "products",
-  "plural": "products",
-  "base": "PersistedModel",
+  "name": "Products",
+  "base": "Model",
   "idInjection": true,
   "options": {
     "validateUpsert": true
@@ -9,7 +8,8 @@
   "properties": {
     "title": {
       "type": "string",
-      "required": true
+      "required": true,
+      "unique": true
     },
     "description": {
       "type": "string",
@@ -17,21 +17,23 @@
     },
     "price": {
       "type": "number",
-      "required": true,
-      "default": 0
+      "min": 1,
+      "max": 10000
     },
     "discountPercentage": {
       "type": "number",
-      "required": true,
-      "default": 0
+      "min": 1,
+      "max": 99
     },
     "rating": {
       "type": "number",
-      "required": true,
+      "min": 0,
+      "max": 5,
       "default": 0
     },
     "stock": {
       "type": "number",
+      "min": 0,
       "default": 0
     },
     "brand": {
@@ -43,27 +45,27 @@
       "required": true
     },
     "thumbnail": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "images": {
       "type": "array",
-      "default": []
+      "itemType": "string"
     },
     "colors": {
       "type": "array",
-      "default": []
+      "itemType": "mixed"
     },
     "sizes": {
       "type": "array",
-      "default": []
+      "itemType": "mixed"
     },
     "highlights": {
       "type": "array",
-      "default": []
+      "itemType": "string"
     },
     "discountPrice": {
-      "type": "number",
-      "default": 0
+      "type": "number"
     },
     "deleted": {
       "type": "boolean",
@@ -73,5 +75,84 @@
   "validations": [],
   "relations": {},
   "acls": [],
-  "methods": {}
+  "methods": {
+    "createProduct": {
+      "accepts": [
+        {
+          "arg": "product",
+          "type": "object",
+          "http": {
+            "source": "body"
+          },
+          "description": "Product object to create"
+        }
+      ],
+      "returns": {
+        "arg": "product",
+        "type": "object",
+        "root": true
+      },
+      "http": {
+        "verb": "post",
+        "path": "/product"
+      }
+    },
+    "getAllProducts": {
+      "returns": {
+        "arg": "product",
+        "type": "array",
+        "root": true
+      },
+      "http": {
+        "verb": "get",
+        "path": "/products"
+      }
+    },
+    "fetchProductById": {
+      "accepts": [
+        {
+          "arg": "id",
+          "type": "string"
+        }
+      ],
+      "returns": {
+        "arg": "product",
+        "type": "object",
+        "root": true
+      },
+      "http": {
+        "verb": "get",
+        "path": "/product/:id"
+      }
+    },
+    "updateProduct": {
+      "accepts": [
+        {
+          "arg": "id",
+          "type": "number",
+          "http": {
+            "source": "body"
+          },
+          "description": "ID of the product to update"
+        },
+        {
+          "arg": "product",
+          "type": "object",
+          "http": {
+            "source": "body"
+          },
+          "description": "Updated product object"
+        }
+      ],
+      "returns": {
+        "arg": "product",
+        "type": "Product",
+        "root": true
+      },
+      "http": {
+        "verb": "patch",
+        "path": "/product/:id"
+      }
+    }
+  }
 }
