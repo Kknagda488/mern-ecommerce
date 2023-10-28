@@ -2,47 +2,40 @@ const passport = require('passport');
 const nodemailer = require('nodemailer');
 
 let transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false, // true for 465, false for other ports
-    auth: {
-        user: 'kknagda488@gmail.com', // gmail
-        pass: process.env.MAIL_PASSWORD, // pass
-    },
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false, // true for 465, false for other ports
+  auth: {
+    user: 'kknagda488@gmail.com', // gmail
+    pass: "Cul6349200", // pass
+  },
 });
 
 
 exports.isAuth = (req, res, done) => {
-    return passport.authenticate('jwt');
+  return passport.authenticate('jwt');
 };
 
 exports.sanitizeUser = (user) => {
-    return { id: user.id, role: user.role };
+  return { id: user.id, role: user.role };
 };
 
-exports.cookieExtractor = function (req) {
-    let token = null;
-    if (req && req.cookies) {
-        token = req.cookies['jwt'];
-    }
-    return token;
-};
 
 
 exports.sendMail = async function ({ to, subject, text, html }) {
-    let info = await transporter.sendMail({
-        from: '"E-commerce" <coderdost@gmail.com>', // sender address
-        to,
-        subject,
-        text,
-        html
-    });
-    return info;
+  let info = await transporter.sendMail({
+    from: '"E-commerce" <kknagda488@gmail.com>', // sender address
+    to,
+    subject,
+    text,
+    html
+  });
+  return info;
 }
 
 exports.invoiceTemplate = function (order) {
 
-    return (`<!DOCTYPE html>
+  return (`<!DOCTYPE html>
 <html>
 <head>
 
@@ -220,7 +213,7 @@ exports.invoiceTemplate = function (order) {
           <!-- start copy -->
           <tr>
             <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-              <p style="margin: 0;">Here is a summary of your recent order. If you have any questions or concerns about your order, please <a href="coderdost@gmail.com">contact us</a>.</p>
+              <p style="margin: 0;">Here is a summary of your recent order. If you have any questions or concerns about your order, please <a href="kknagda488@gmail.com">contact us</a>.</p>
             </td>
           </tr>
           <!-- end copy -->
@@ -240,7 +233,7 @@ exports.invoiceTemplate = function (order) {
                   <td align="left" width="20%" style="padding: 6px 12px;font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">$${Math.round(item.product.price * (1 - item.product.discountPercentage / 100), 2)}</td>
                 </tr>`)
 
-        }
+    }
                
                
                 <tr>
@@ -355,7 +348,7 @@ exports.invoiceTemplate = function (order) {
 
 </body>
 </html>`
-    )
+  )
 
 
 }

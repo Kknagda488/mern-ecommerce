@@ -40,8 +40,6 @@ module.exports = function (User) {
             res.status(401).json({ message: 'Unauthorized' });
             return;
         }
-
-        // Generate a JWT token
         const token = jwt.sign({ userId: user.id, email: user.email }, 'your_secret_key_here', { expiresIn: '2d' });
 
         res.cookie('jwt', token, {
@@ -54,13 +52,12 @@ module.exports = function (User) {
     }
     User.logout = async function (req, res) {
         try {
-            // Clear the JWT cookie by setting it to null and expiring it immediately
+
             res.cookie('jwt', null, {
                 expires: new Date(0),
                 httpOnly: true,
             });
 
-            // Respond with a 200 status to indicate a successful logout
             res.sendStatus(200);
         } catch (err) {
             res.status(400).json(err);
