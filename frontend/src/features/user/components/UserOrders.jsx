@@ -10,16 +10,22 @@ import { Grid } from 'react-loader-spinner';
 
 export default function UserOrders() {
   const dispatch = useDispatch();
-  const orders = useSelector(selectUserOrders);
+  let order = useSelector(selectUserOrders);
   const status = useSelector(selectUserInfoStatus);
 
-  useEffect(() => {
-    dispatch(fetchLoggedInUserOrderAsync());
-  }, [dispatch]);
+  const allOrder = order;
+
+  dispatch(fetchLoggedInUserOrderAsync());
+
+  setTimeout(() => {
+    console.log(allOrder)
+
+  }, 2000)
+  console.log(allOrder)
 
   return (
     <div>
-      {orders && orders.map((order) => (
+      {allOrder.map((order) => (
         <div key={order.id}>
           <div>
             <div className="mx-auto mt-12 bg-white max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -113,7 +119,7 @@ export default function UserOrders() {
           </div>
         </div>
       ))}
-       {status === 'loading' ? (
+      {status === 'loading' ? (
         <Grid
           height="80"
           width="80"

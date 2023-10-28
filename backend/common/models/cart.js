@@ -10,17 +10,18 @@ module.exports = function (Cart) {
         }
     };
 
-    Cart.addToCart = async function (id, data, cb) {
-        const cart = { ...data, user: id };
+    Cart.addToCart = async function (req, res, data, cb) {
+        const { id } = req.user;
+        data.user = id;
         try {
-            const createdCart = await Cart.create(cart);
-            const result = await Cart.findById(createdCart.id, { include: 'product' });
+            const cart = new Cart(data);
+            const doc = await cart.save();
+            const result = await doc.product.get(); // Assuming 'product' is the relation name
             cb(null, result);
         } catch (err) {
             cb(err);
         }
     };
-
     Cart.deleteFromCart = async function (id, cb) {
         try {
             const cartItem = await Cart.findById(id);

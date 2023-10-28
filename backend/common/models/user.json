@@ -1,61 +1,57 @@
 {
-  "name": "Cart",
+  "name": "User",
   "base": "Model",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "quantity": {
-      "type": "number",
+    "email": {
+      "type": "string",
       "required": true,
-      "default": 0
+      "unique": true
     },
-    "product": {
-      "type": "number",
-      "required": true,
-      "default": 0
+    "addresses": {
+      "type": "array",
+      "itemType": "Mixed"
     },
-    "user": {
-      "type": "number",
-      "required": true,
-      "default": 0
+    "password": {
+      "type": "string",
+      "required": true
     },
-    "size": {
-      "type": "any"
+    "role": {
+      "type": "string",
+      "default": "user"
+    },
+    "name": {
+      "type": "string"
     }
   },
   "validations": [],
-  "relations": {
-    "product": {
-      "type": "belongsTo",
-      "model": "Product",
-      "foreignKey": "productId"
-    }
-  },
+  "relations": {},
   "acls": [],
   "methods": {
-    "fetchCartByUser": {
+    "createUser": {
       "accepts": [
         {
-          "arg": "id",
-          "type": "string",
+          "arg": "userData",
+          "type": "object",
           "http": {
             "source": "body"
           }
         }
       ],
       "returns": {
-        "arg": "cartItems",
-        "type": "array",
+        "arg": "reponse",
+        "type": "object",
         "root": true
       },
       "http": {
-        "verb": "get",
-        "path": "/fetchCartByUser"
+        "verb": "post",
+        "path": "/register"
       }
     },
-    "addToCart": {
+    "loginUser": {
       "accepts": [
         {
           "arg": "req",
@@ -72,7 +68,7 @@
           }
         },
         {
-          "arg": "data",
+          "arg": "userData",
           "type": "object",
           "http": {
             "source": "body"
@@ -80,15 +76,43 @@
         }
       ],
       "returns": {
-        "arg": "result",
-        "type": "object"
+        "arg": "user",
+        "type": "object",
+        "root": true
       },
       "http": {
-        "path": "/addToCart",
-        "verb": "post"
+        "verb": "post",
+        "path": "/login"
       }
     },
-    "deleteFromCart ": {
+    "logout": {
+      "accepts": [
+        {
+          "arg": "req",
+          "type": "object",
+          "http": {
+            "source": "req"
+          }
+        },
+        {
+          "arg": "res",
+          "type": "object",
+          "http": {
+            "source": "res"
+          }
+        }
+      ],
+      "returns": {
+        "arg": "status",
+        "type": "string",
+        "root": true
+      },
+      "http": {
+        "verb": "post",
+        "path": "/logout"
+      }
+    },
+    "fetchUserById": {
       "accepts": [
         {
           "arg": "id",
@@ -99,40 +123,13 @@
         }
       ],
       "returns": {
-        "arg": "cartItem",
+        "arg": "user",
         "type": "object",
         "root": true
       },
       "http": {
-        "verb": "delete",
-        "path": "/deleteFromCart/:id"
-      }
-    },
-    "updateCart ": {
-      "accepts": [
-        {
-          "arg": "id",
-          "type": "string",
-          "http": {
-            "source": "body"
-          }
-        },
-        {
-          "arg": "data",
-          "type": "object",
-          "http": {
-            "source": "body"
-          }
-        }
-      ],
-      "returns": {
-        "arg": "cartItem",
-        "type": "object",
-        "root": true
-      },
-      "http": {
-        "verb": "put",
-        "path": "/updateCart/:id"
+        "verb": "get",
+        "path": "/:id"
       }
     }
   }

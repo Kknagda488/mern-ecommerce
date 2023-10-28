@@ -25,6 +25,7 @@ import Protected from './features/auth/components/Protected';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import ProtectedAdmin from './features/auth/components/ProtectedAdmin';
+import { selectLoggedInUser } from './features/auth/authSlice';
 
 
 const options = {
@@ -36,9 +37,9 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: (
-      // <Protected>
-      <Home></Home>
-      // </Protected>
+      <Protected>
+        <Home></Home>
+      </Protected>
     ),
   },
   {
@@ -154,21 +155,21 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  // const dispatch = useDispatch();
-  // const user = useSelector(selectLoggedInUser);
+  const dispatch = useDispatch();
+  const user = useSelector(selectLoggedInUser);
   const userChecked = true;
 
   // useEffect(() => {
   //   dispatch(checkAuthAsync());
   // }, [dispatch]);
 
-  // useEffect(() => {
-  //   if (user) {
-  //     dispatch(fetchItemsByUserIdAsync());
-  //     // we can get req.user by token on backend so no need to give in front-end
-  //     dispatch(fetchLoggedInUserAsync());
-  //   }
-  // }, [dispatch, user]);
+  useEffect(() => {
+    if (user) {
+      // dispatch(fetchItemsByUserIdAsync(user.id));
+      // we can get req.user by token on backend so no need to give in front-end
+      dispatch(fetchLoggedInUserAsync(user.id));
+    }
+  }, [dispatch, user]);
 
   return (
     <>
